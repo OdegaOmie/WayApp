@@ -1,1 +1,5 @@
-This is an app for things of the nature of some things.
+Way App is a multi platform App for finding and exploring some of Irelands best historical walks.
+
+API folder contains the back end API
+
+APP contains the front end code.
