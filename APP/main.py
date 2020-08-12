@@ -16,7 +16,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.lang import Builder
 
 
-class CreateAccountWindow(Screen):
+class CreateAccountWindow(Screen): 
     namee = ObjectProperty(None)
     email = ObjectProperty(None)
     password = ObjectProperty(None)
