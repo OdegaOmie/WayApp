@@ -15,6 +15,8 @@ from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.boxlayout import BoxLayout
 from kivy.lang import Builder
 
+from source.create_account_window import CreateAccountWindow
+from source.map_select import MapSelect
 
 class CreateAccountWindow(Screen): 
     namee = ObjectProperty(None)
@@ -23,30 +25,8 @@ class CreateAccountWindow(Screen):
       
    
 
-    def submit(self):
-        if self.namee.text != "" and self.email.text != "" and self.email.text.count("@") == 1 and self.email.text.count(".") > 0:
-            if self.password != "":
-                db.add_user(self.email.text, self.password.text, self.namee.text)
 
-                self.reset()
 
-                sm.current = "login"
-            else:
-                invalidForm()
-        else:
-            invalidForm()
-
-    def login(self):
-        self.reset()
-        sm.current = "login"
-
-    def reset(self):
-        self.email.text = ""
-        self.password.text = ""
-        self.namee.text = ""
-
-class MapSelect(Screen):
-    pass
 
 class LoginWindow(Screen):
     email = ObjectProperty(None)
@@ -63,6 +43,12 @@ class LoginWindow(Screen):
     def createBtn(self):
         self.reset()
         sm.current = "create"
+
+    def invalidLogin():
+        pop = Popup(title='Invalid Login',
+                    content=Label(text='Invalid username or password.'),
+                    size_hint=(None, None), size=(400, 400))
+        pop.open()
 
     def reset(self):
         self.email.text = ""
@@ -83,28 +69,15 @@ class MainWindow(Screen):
         self.n.text = "Account Name: " + name
         self.email.text = "Email: " + self.current
         self.created.text = "Created On: " + created
-    
-
-
-
 
 class WindowManager(ScreenManager):
     pass
 
 
-def invalidLogin():
-    pop = Popup(title='Invalid Login',
-                  content=Label(text='Invalid username or password.'),
-                  size_hint=(None, None), size=(400, 400))
-    pop.open()
 
 
-def invalidForm():
-    pop = Popup(title='Invalid Form',
-                  content=Label(text='Please fill in all inputs with valid information.'),
-                  size_hint=(None, None), size=(400, 400))
 
-    pop.open()
+
 
 kv = Builder.load_file("my.kv")
 
