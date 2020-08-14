@@ -34,6 +34,6 @@ class MyMainApp(App):
     def build(self):
         return sm
 
-
+# creating App branch
 if __name__ == "__main__":
     MyMainApp().run()
