@@ -18,6 +18,12 @@ from kivy.lang import Builder
 from source.create_account_window import CreateAccountWindow
 from source.map_select import MapSelect
 
+class CreateAccountWindow(Screen): 
+    namee = ObjectProperty(None)
+    email = ObjectProperty(None)
+    password = ObjectProperty(None)
+      
+   
 
 
 

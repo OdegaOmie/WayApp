@@ -1,0 +1,7 @@
+{
+    "python.pythonPath": "C:\\AnacondaHome\\envs\\new_Kivy\\python.exe",
+    "python.linting.pylintEnabled": true,
+    "python.linting.pylamaEnabled": false,
+    "python.linting.enabled": true,
+    "python.linting.flake8Enabled": false
+}
