@@ -18,67 +18,6 @@ from kivy.lang import Builder
 from source.create_account_window import CreateAccountWindow
 from source.map_select import MapSelect
 
-class CreateAccountWindow(Screen): 
-    namee = ObjectProperty(None)
-    email = ObjectProperty(None)
-    password = ObjectProperty(None)
-      
-   
-
-
-
-
-class LoginWindow(Screen):
-    email = ObjectProperty(None)
-    password = ObjectProperty(None)
-
-    def loginBtn(self):
-        if db.validate(self.email.text, self.password.text):
-            MainWindow.current = self.email.text
-            self.reset()
-            sm.current = "main"
-        else:
-            invalidLogin()
-
-    def createBtn(self):
-        self.reset()
-        sm.current = "create"
-
-    def invalidLogin():
-        pop = Popup(title='Invalid Login',
-                    content=Label(text='Invalid username or password.'),
-                    size_hint=(None, None), size=(400, 400))
-        pop.open()
-
-    def reset(self):
-        self.email.text = ""
-        self.password.text = ""
-
-
-class MainWindow(Screen):
-    n = ObjectProperty(None)
-    created = ObjectProperty(None)
-    email = ObjectProperty(None)
-    current = ""
-
-    def logOut(self):
-        sm.current = "login"
-
-    def on_enter(self, *args):
-        password, name, created = db.get_user(self.current)
-        self.n.text = "Account Name: " + name
-        self.email.text = "Email: " + self.current
-        self.created.text = "Created On: " + created
-
-class WindowManager(ScreenManager):
-    pass
-
-
-
-
-
-
-
 kv = Builder.load_file("my.kv")
 
 sm = WindowManager()

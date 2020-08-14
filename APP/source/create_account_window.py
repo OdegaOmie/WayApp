@@ -1,3 +1,7 @@
+from kivy.uix.popup import Popup
+from kivy.properties import ObjectProperty
+from kivy.uix.screenmanager import ScreenManager, Screen
+
 class CreateAccountWindow(Screen):
     namee = ObjectProperty(None)
     email = ObjectProperty(None)
