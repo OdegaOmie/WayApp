@@ -13,7 +13,7 @@ from bson import ObjectId
 @app.route('/test', methods=['GET'])
 def test_get():
     collection = db["users"]
-    users = json.loads m ,     ,,zssssssssssss4 (json_util.dumps(collection.find({})))
+    users = json.loads(json_util.dumps(collection.find({})))
     return jsonify(users)
 
 
