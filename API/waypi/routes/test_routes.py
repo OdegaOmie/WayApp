@@ -8,19 +8,14 @@ import json
 from bson import ObjectId
 
 
-
-
-@app.route('/test', methods=['GET'])
+@app.route("/test", methods=["GET"])
 def test_get():
     collection = db["users"]
     users = json.loads(json_util.dumps(collection.find({})))
     return jsonify(users)
 
 
-
-@app.route('/test', methods=['POST'])
+@app.route("/test", methods=["POST"])
 def test_post():
     users = list()
-    return jsonify([user])
-
-
+    return jsonify([users])

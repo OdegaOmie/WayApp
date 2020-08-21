@@ -1,27 +1,20 @@
 from kivy.app import App
-#kivy.require("1.9.1")
-from kivy.uix.boxlayout import BoxLayout
-from kivy.properties import ObjectProperty
-from kivy.network.urlrequest import UrlRequest
-
-class MyWidget(BoxLayout):
-    def __init__(self,**kwargs):
-        super(MyWidget,self).__init__(**kwargs)
-        search_url = "http://api.openweathermap.org/data/2.5/forecast/daily?APPID=ef4f6b76310abad083b96a45a6f547be&q=new%20york"
-        print (search_url)
-        self.request = UrlRequest(search_url, self.res)
-        print (self.request)
-        print ("Result: before success", self.request.result,"\n")
+from kivy.uix.screenmanager import ScreenManager, WipeTransition
+from widgets.login_screen import login_screen
+from widgets.create_account_screen import create_account_screen
 
 
-    def res(self,*args):
-        print ("Result: after success", self.request.result)
+class way_app(App):
 
+    screen_manager = ScreenManager(transition=WipeTransition())
 
-class MyApp(App):
     def build(self):
-        return MyWidget()
+        self.screen_manager.add_widget(login_screen(name='login'))
+        self.screen_manager.add_widget(create_account_screen(name='create'))
+        self.screen_manager.current = 'create'
+        return self.screen_manager
 
 
 if __name__ == '__main__':
-    MyApp().run()
+    wapp = way_app()
+    wapp.run()

@@ -1,0 +1,75 @@
+#:kivy 1.11.1
+<login_screen>:
+    name: "login"
+
+    email: email
+    password: password
+
+    canvas:
+        Rectangle:
+            source: 'Trees.jpg'
+            pos: self.pos
+            size:self.size
+
+    FloatLayout:
+
+        Label:
+            canvas.before:
+                Color:
+                    rgba: 0,0,0, 0.5 
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            text:"Email: "
+            font_size: (root.width**2 + root.height**2) / 13**4
+            pos_hint: {"x":0.1, "top":0.9}
+            size_hint: 0.35, 0.15
+
+        TextInput:
+            id: email
+            font_size: (root.width**2 + root.height**2) / 13**4
+            multiline: False
+            pos_hint: {"x": 0.45 , "top":0.9}
+            size_hint: 0.4, 0.15
+
+        Label:
+            canvas.before:
+                Color:
+                    rgba: 0,0,0, 0.5 
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            
+            text:"Password: "
+            font_size: (root.width**2 + root.height**2) / 13**4
+            pos_hint: {"x":0.1, "top":0.7}
+            size_hint: 0.35, 0.15
+
+        TextInput:
+            id: password
+            font_size: (root.width**2 + root.height**2) / 13**4
+            multiline: False
+            password: True
+            pos_hint: {"x": 0.45, "top":0.7}
+            size_hint: 0.4, 0.15
+
+        Button:
+            pos_hint:{"x":0.2,"y":0.05}
+            size_hint: 0.6, 0.2
+            background_color: .3, .5, .8, 1
+            font_size: (root.width**2 + root.height**2) / 13**4
+            
+            text: "Login"
+            on_release:
+                root.manager.transition.direction = "up"
+                root.loginBtn()
+
+        Button:
+            pos_hint:{"x":0.3,"y":0.3}
+            size_hint: 0.4, 0.1
+            font_size: (root.width**2 + root.height**2) / 17**4
+            background_color: .3, .5, .8, 1
+            text: "Don't have an Account? Create One"
+            on_release:
+                root.manager.transition.direction = "right"
+                root.createBtn()
