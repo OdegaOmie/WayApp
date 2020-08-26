@@ -5,8 +5,6 @@ from waypi.baseapp import app
 from waypi.connector import db
 
 import json
-from bson import ObjectId
-
 
 @app.route("/test", methods=["GET"])
 def test_get():

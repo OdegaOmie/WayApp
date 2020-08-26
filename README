@@ -1,5 +1,10 @@
 Way App is a multi platform App for finding and exploring some of Irelands best historical walks.
 
 The API folder contains the back end API, which is a Python Django app.
+Base Api built off flask boilerplate from [@MoonlightLuke](https://twitter.com/MoonlightLuke)
+Git: https://github.com/LukePeters/flask-mongo-api-boilerplate
+Thanks Luke. :)
 
 APP contains the front end code.
+
+
