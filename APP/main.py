@@ -3,7 +3,7 @@ from kivy.uix.screenmanager import ScreenManager, WipeTransition
 from widgets.login_screen import login_screen
 from widgets.create_account_screen import create_account_screen
 
-
+# We need what we had before working
 class way_app(App):
 
     screen_manager = ScreenManager(transition=WipeTransition())
