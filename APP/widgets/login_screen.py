@@ -3,15 +3,30 @@ from kivy.properties import ObjectProperty
 from kivy.uix.popup import Popup
 from kivy.uix.label import Label
 from kivy.lang import Builder
+from kivy.network.urlrequest import UrlRequest
+#import requests
 
 
 class login_screen(Screen):
     email = ObjectProperty(None)
     password = ObjectProperty(None)
-    invalid_login_label = Label(text="Invalid username or password.") 
+    invalid_login_label = Label(text="Invalid username or password.")
+
+
+    def success_method(self, req, result):
+        print(req)
+        print(result)
+        
 
     def login_btn(self):
-        self.invalid_login()
+        email = self.ids.email.text
+        password = self.ids.password.text
+        json_message = {"email": email, "password": password}
+        url = "http://127.0.0.1:5000/user/login/"
+        req = UrlRequest(url, on_success=self.success_method, req_body=json_message)
+        print (req)
+        # self.invalid_login()
+        
 
     def create_btn(self):
         self.reset()

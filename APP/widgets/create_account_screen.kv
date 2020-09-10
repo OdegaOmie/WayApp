@@ -23,24 +23,7 @@
         FloatLayout:
             size: root.width, root.height/2
 
-            Label:
-                canvas.before:
-                    Color:
-                        rgba: 0,0,0, 0.5 
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-
-                        
             
-                text: "Create an Account"
-                size_hint: 0.8, 0.2
-                bold: True
-                italic: True
-                pos_hint: {"x":0.1, "top":1}
-                font_size: (root.width**2 + root.height**2) / 12**4
-                color: 1,1,1,1
-
             Label:
                 canvas.before:
                     Color:
@@ -48,18 +31,20 @@
                     Rectangle:
                         pos: self.pos
                         size: self.size
-                size_hint: 0.5,0.12
-                pos_hint: {"x":0, "top":0.8}
                 text: "Name: "
-                font_size: (root.width**2 + root.height**2) / 14**4
+                italic: True 
+                outline_width: 2
+                font_size: (root.width**2 + root.height**2) / 13**4
+                pos_hint: {"x":0.1, "top":0.9}
+                size_hint: 0.35,0.12
 
             TextInput:
-                pos_hint: {"x":0.5, "top":0.8}
-                size_hint: 0.4, 0.12
                 id: user_name
-                multiline: False
                 font_size: (root.width**2 + root.height**2) / 14**4
-
+                multiline: False
+                pos_hint: {"x":0.45, "top":0.9}
+                size_hint: 0.4, 0.12
+                
             Label:
                 canvas.before:
                     Color:
@@ -67,17 +52,20 @@
                     Rectangle:
                         pos: self.pos
                         size: self.size
-                size_hint: 0.5,0.12
-                pos_hint: {"x":0, "top":0.8-0.13}
+                
                 text: "Email: "
-                font_size: (root.width**2 + root.height**2) / 14**4
+                italic: True 
+                outline_width: 2
+                font_size: (root.width**2 + root.height**2) / 13**4
+                pos_hint: {"x":0.1, "top":0.75}
+                size_hint: 0.35,0.12
 
             TextInput:
-                pos_hint: {"x":0.5, "top":0.8-0.13}
-                size_hint: 0.4, 0.12
                 id: email
+                font_size: (root.width**2 + root.height**2) / 13**4
                 multiline: False
-                font_size: (root.width**2 + root.height**2) / 14**4
+                pos_hint: {"x":0.45, "top":0.75}
+                size_hint: 0.4, 0.12
 
             Label:
                 canvas.before:
@@ -86,36 +74,69 @@
                     Rectangle:
                         pos: self.pos
                         size: self.size
-                size_hint: 0.5,0.12
-                pos_hint: {"x":0, "top":0.8-0.13*2}
+
                 text: "Password: "
-                font_size: (root.width**2 + root.height**2) / 14**4
+                italic: True 
+                outline_width: 2
+                font_size: (root.width**2 + root.height**2) / 13**4
+                pos_hint: {"x":0.1, "top":0.6}
+                size_hint: 0.35,0.12
 
             TextInput:
-                pos_hint: {"x":0.5, "top":0.8-0.13*2}
-                size_hint: 0.4, 0.12
                 id: passw
+                font_size: (root.width**2 + root.height**2) / 13**4
                 multiline: False
                 password: True
-                font_size: (root.width**2 + root.height**2) / 14**4
+                pos_hint: {"x":0.45, "top":0.6}
+                size_hint: 0.4, 0.12
 
-        Button:
-            pos_hint:{"x":0.3,"y":0.25}
-            size_hint: 0.4, 0.1
-            font_size: (root.width**2 + root.height**2) / 17**4
-            background_color: .3, .5, .8, 1
+        SmoothButton:
+            pos_hint:{"x":0.25,"y":0.3}
+            size_hint: 0.45, 0.08
+            font_size: (root.width**2 + root.height**2) / 16**4
+            
+            back_color: 1, 0, 0, 1
             text: "Already have an Account? Log In"
+            
             on_release:
-                root.manager.transition.direction = "left"
                 root.login()
+                root.manager.current = "login"
 
-        Button:
-            pos_hint:{"x":0.2,"y":0.05}
-            size_hint: 0.6, 0.15
-            background_color: .3, .5, .8, 1
-            text: "Submit"
-            font_size: (root.width**2 + root.height**2) / 14**4
+        SmoothButton:
+            pos_hint:{"x":0.275,"y":0.1}
+            size_hint: 0.4, 0.12
+            back_color: 0, .5, 1, 1
+            font_size: (root.width**2 + root.height**2) / 13**4
+            text: "Create Account"
+            italic: True 
             on_release:
-                root.manager.transition.direction = "left"
                 root.submit()
+                root.manager.current = "login"
+
+<SmoothButton@Button>:
+    background_color:(0,0,0,0)
+    background_normal: ''
+    back_color: (.3, .5, .8, 1)
+    border_radius: [32]
+    canvas.before:
+        Color:
+            rgba: self.back_color
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: self.border_radius
+
+<StrokeButton@Button>:
+    background_color:(0,0,0,0.5)
+    background_normal: ''
+    back_color: (1,0,1,1)
+    border_radius: 18
+    color: self.back_color
+    bold: True
+    canvas.before:
+        Color:
+            rgba: self.back_color
+        Line:
+            rounded_rectangle: (self.pos[0], self.pos[1], self.size[0], self.size[1], self.border_radius)
+            width: 1.2
         

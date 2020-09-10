@@ -9,7 +9,7 @@ import json
 
 class User:
     def __init__(self):
-        self.defaults = {
+        self.defaults = { 
             "id": tools.randID(),
             "ip_addresses": [request.remote_addr],
             "acct_active": True,
@@ -20,6 +20,17 @@ class User:
             "email": "",
             "plan": "basic",
         }
+
+        # { 
+        #     "ip_addresses": ["127.0.0.1"],
+        #     "acct_active": True,
+        #     "date_created": "0/0/00",
+        #     "last_login": "00:00:00:00",
+        #     "first_name": "adminius",
+        #     "last_name": "El Admino",
+        #     "email": "admin@site.com",
+        #     "plan": "basic",
+        # }
 
     def get(self):
         token_data = jwt.decode(
@@ -55,11 +66,16 @@ class User:
 
     def login(self):
         resp = tools.JsonResp({"message": "Invalid user credentials"}, 403)
-
+        # request = LocalProxy(partial(_lookup_req_object, "request"))
         try:
             data = json.loads(request.data)
             email = data["email"].lower()
             user = app.db.users.find_one({"email": email}, {"_id": 0})
+
+            pword = pbkdf2_sha256.encrypt(
+                "Passw0rd1", rounds=20000, salt_size=16
+            )
+            print(pword)
 
             if user and pbkdf2_sha256.verify(data["password"], user["password"]):
                 access_token = auth.encodeAccessToken(
@@ -92,7 +108,8 @@ class User:
                     200,
                 )
 
-        except Exception:
+        except Exception as e:
+            print(e)
             pass
 
         return resp
@@ -123,6 +140,8 @@ class User:
             "email": data["email"].lower(),
             "password": data["password"],
         }
+
+
 
         # Merge the posted data with the default user attributes
         self.defaults.update(expected_data)
