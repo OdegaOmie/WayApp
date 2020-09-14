@@ -22,8 +22,9 @@ class login_screen(Screen):
         email = self.ids.email.text
         password = self.ids.password.text
         json_message = {"email": email, "password": password}
-        url = "http://127.0.0.1:5000/user/login/"
-        req = UrlRequest(url, on_success=self.success_method, req_body=json_message)
+        url = "http://127.0.0.1:5000/user/"
+        req = UrlRequest(url, on_success=self.success_method)
+        # req = UrlRequest(url, on_success=self.success_method, req_body=json_message)
         print (req)
         # self.invalid_login()
         

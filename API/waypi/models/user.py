@@ -71,12 +71,6 @@ class User:
             data = json.loads(request.data)
             email = data["email"].lower()
             user = app.db.users.find_one({"email": email}, {"_id": 0})
-
-            pword = pbkdf2_sha256.encrypt(
-                "Passw0rd1", rounds=20000, salt_size=16
-            )
-            print(pword)
-
             if user and pbkdf2_sha256.verify(data["password"], user["password"]):
                 access_token = auth.encodeAccessToken(
                     user["id"], user["email"], user["plan"]
