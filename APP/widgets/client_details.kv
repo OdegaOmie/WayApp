@@ -1,0 +1,77 @@
+#:kivy 1.11.1
+
+<client_details>:
+    name: "details"
+    user_name: user_name
+    email: email
+    created: created
+    canvas:
+        Rectangle:
+            source: 'res/Stone.jpg'
+            pos: self.pos
+            size:self.size
+                        
+
+    FloatLayout:
+        cols:1
+
+        Label:
+            canvas.before:
+                Color:
+                    rgba: 0,0,0, 0.5 
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            id: user_name
+            text: "Account Name: "
+            italic: True 
+            outline_width: 2
+            font_size: (root.width**2 + root.height**2) / 13**4
+            pos_hint: {"x":0.1, "top":0.9}
+            size_hint: 0.35, 0.15
+
+
+
+        Label:
+            canvas.before:
+                Color:
+                    rgba: 0,0,0, 0.5 
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            id: email
+            text: "Email: "
+            italic: True 
+            outline_width: 2
+            font_size: (root.width**2 + root.height**2) / 13**4
+            pos_hint: {"x":0.1, "top":0.7}
+            size_hint: 0.35, 0.15    
+
+
+
+        Label:
+            canvas.before:
+                Color:
+                    rgba: 0,0,0, 0.5 
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            id: created
+            text: "Active Since: "
+            italic: True 
+            outline_width: 2
+            font_size: (root.width**2 + root.height**2) / 13**4
+            pos_hint: {"x":0.1, "top":0.5}
+            size_hint: 0.35, 0.15                        
+
+
+
+        SmoothButton:
+            pos_hint:{"x":0.25,"y":0.3}
+            size_hint: 0.45, 0.08
+            font_size: (root.width**2 + root.height**2) / 16**4
+            back_color: 1, 0, 0, 1
+            text: "Logout"
+            italic: True
+            on_release:
+                root.logOut()              

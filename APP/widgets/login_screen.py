@@ -10,8 +10,9 @@ import json
 from widgets import current_user
 
 class login_screen(Screen):
-    email = ObjectProperty(None)
-    password = ObjectProperty(None)
+
+    # def __init__(self,**kwargs):
+    #     super (login_screen,self).__init__(**kwargs)
     invalid_login_label = Label(text="Invalid username or password.")
 
 
@@ -19,7 +20,8 @@ class login_screen(Screen):
         current_user["user_name"] = result["user_name"]
         current_user["token"] = result["access_token"]
         current_user["refresh_token"] = result["refresh_token"]
-        return "details"
+        self.manager.current = "details"
+        # return "details"
 
     def login_failure(self, req, result):
         self.invalid_login()
