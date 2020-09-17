@@ -17,8 +17,10 @@ class create_account_screen(Screen):
     invalid_details_label = Label(text="Ya gone fucked up son!")
 
     def register_success(self, req, result):
-        current_user["user_name"] = "something"
-        print(result)
+        current_user["user_name"] = result["user_name"]
+        current_user["token"] = result["access_token"]
+        current_user["refresh_token"] = result["refresh_token"]
+        return "details"
 
     def register_failure(self, req, result):
         self.invalid_form()
