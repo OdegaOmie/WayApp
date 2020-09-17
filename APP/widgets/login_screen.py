@@ -4,8 +4,10 @@ from kivy.uix.popup import Popup
 from kivy.uix.label import Label
 from kivy.lang import Builder
 from kivy.network.urlrequest import UrlRequest
-#import requests
+import json
 
+# global user variable
+from widgets import current_user
 
 class login_screen(Screen):
     email = ObjectProperty(None)
@@ -13,27 +15,30 @@ class login_screen(Screen):
     invalid_login_label = Label(text="Invalid username or password.")
 
 
-    def success_method(self, req, result):
-        print(req)
-        print(result)
-        
+    def login_success(self, req, result):
+        current_user["user_name"] = result["user_name"]
+        current_user["token"] = result["access_token"]
+        current_user["refresh_token"] = result["refresh_token"]
+        return "details"
+
+    def login_failure(self, req, result):
+        self.invalid_login()
+
 
     def login_btn(self):
-        email = self.ids.email.text
-        password = self.ids.password.text
-        json_message = {"email": email, "password": password}
-        url = "http://127.0.0.1:5000/user/"
-        req = UrlRequest(url, on_success=self.success_method)
-        # req = UrlRequest(url, on_success=self.success_method, req_body=json_message)
-        print (req)
-        # self.invalid_login()
-        
+        if (self.ids.email.text != ""
+        and self.ids.password.text != ""):
+            json_message = json.dumps({"email": self.ids.email.text, "password": self.ids.password.text})
+            url = "http://127.0.0.1:5000/user/login/"
+            UrlRequest(url, on_success=self.login_success, on_failure=self.login_failure, req_body=json_message)
+        else:
+            self.invalid_login()
 
     def create_btn(self):
         self.reset()
         return "create"
 
-    def invalid_login():
+    def invalid_login(self):
         
         pop = Popup(
             title="Invalid Login",

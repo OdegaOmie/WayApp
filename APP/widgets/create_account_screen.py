@@ -3,6 +3,11 @@ from kivy.properties import ObjectProperty
 from kivy.uix.screenmanager import Screen
 from kivy.uix.label import Label
 from kivy.lang import Builder
+from kivy.network.urlrequest import UrlRequest
+import json
+
+# global user variable
+from widgets import current_user
 
 
 class create_account_screen(Screen):
@@ -11,21 +16,31 @@ class create_account_screen(Screen):
     password = ObjectProperty(None)
     invalid_details_label = Label(text="Ya gone fucked up son!")
 
+    def register_success(self, req, result):
+        current_user["user_name"] = "something"
+        print(result)
+
+    def register_failure(self, req, result):
+        self.invalid_form()
+  
+
+
     def submit(self):
         if (
             self.user_name.text != ""
+            and self.password.text != ""
             and self.email.text != ""
             and self.email.text.count("@") == 1
             and self.email.text.count(".") > 0
         ):
-            if self.password != "":
-                # db.add_user(self.email.text, self.password.text, self.user_name.text)
-
-                self.reset()
-
-                # sm.current = "login"
-            else:
-                self.invalid_form()
+            json_message = json.dumps({
+                "user_name" : self.user_name.text,
+                "email": self.email.text,
+                "password": self.password.text
+                })
+            url = "http://127.0.0.1:5000/user/"
+            UrlRequest(url, on_success=self.register_success,
+             on_failure=self.register_failure, req_body=json_message)
         else:
             self.invalid_form()
 

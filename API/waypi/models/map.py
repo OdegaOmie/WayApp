@@ -25,7 +25,7 @@ class Map:
         print(request.args)
         if "id" in request.args:
             id = request.args["id"]
-            map = app.db.maps.find_one("id",id)
+            map = app.db.maps.find_one("id": id)
             
         else:
             resp = tools.JsonResp({"message": "User not found"}, 404)

@@ -15,8 +15,8 @@ class User:
             "acct_active": True,
             "date_created": tools.nowDatetimeUTC(),
             "last_login": tools.nowDatetimeUTC(),
-            "first_name": "",
-            "last_name": "",
+            "user_name": "",
+            "user_name": "",
             "email": "",
             "plan": "basic",
         }
@@ -26,8 +26,8 @@ class User:
         #     "acct_active": True,
         #     "date_created": "0/0/00",
         #     "last_login": "00:00:00:00",
-        #     "first_name": "adminius",
-        #     "last_name": "El Admino",
+        #     "user_name": "adminius",
+        #     "user_name": "El Admino",
         #     "email": "admin@site.com",
         #     "plan": "basic",
         # }
@@ -93,8 +93,7 @@ class User:
                     {
                         "id": user["id"],
                         "email": user["email"],
-                        "first_name": user["first_name"],
-                        "last_name": user["last_name"],
+                        "user_name": user["user_name"],
                         "plan": user["plan"],
                         "access_token": access_token,
                         "refresh_token": refresh_token,
@@ -129,8 +128,7 @@ class User:
         data = json.loads(request.data)
 
         expected_data = {
-            "first_name": data["first_name"],
-            "last_name": data["last_name"],
+            "user_name": data["user_name"],
             "email": data["email"].lower(),
             "password": data["password"],
         }
@@ -177,8 +175,7 @@ class User:
                     {
                         "id": user["id"],
                         "email": user["email"],
-                        "first_name": user["first_name"],
-                        "last_name": user["last_name"],
+                        "user_name": user["user_name"],
                         "plan": user["plan"],
                         "access_token": access_token,
                         "refresh_token": refresh_token,

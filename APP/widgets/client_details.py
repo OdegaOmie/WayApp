@@ -3,12 +3,9 @@ from kivy.properties import ObjectProperty
 from kivy.uix.screenmanager import Screen
 from kivy.uix.label import Label
 from kivy.lang import Builder
+from widgets import current_user
 
 class client_details(Screen):
-    n = ObjectProperty(None)
-    created = ObjectProperty(None)
-    email = ObjectProperty(None)
-    current = ""
 
     def logOut(self):
         sm.current = "login"
