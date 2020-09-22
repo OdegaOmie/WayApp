@@ -133,3 +133,5 @@ dmypy.json
 .vscode/settings.json
 APP/.vscode/settings.json
 API/setup_db.py
+APP/.buildozer/
+APP/bin/
