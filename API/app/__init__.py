@@ -1,11 +1,11 @@
 from flask import Flask
 from pymongo import MongoClient
-from waypi.tools import JsonResp
+from app.tools import JsonResp
 # from jose import jwt
 # import os
 
 
-from waypi.routes.users import user_blueprint
+from app.routes.users import user_blueprint
 
 
 def create_app():

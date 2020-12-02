@@ -1,8 +1,8 @@
 from flask import Blueprint
 # from flask import current_app as app
 
-from waypi.auth import token_required
-from waypi.models.map import Map
+from app.auth import token_required
+from app.models.map import Map
 
 map_blueprint = Blueprint("map", __name__)
 

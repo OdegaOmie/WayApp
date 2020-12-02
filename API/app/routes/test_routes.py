@@ -1,8 +1,8 @@
 from flask import abort, jsonify, request
 from bson import json_util
 
-from waypi.baseapp import app
-from waypi.connector import db
+from app.baseapp import app
+from app.connector import db
 
 import json
 

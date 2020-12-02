@@ -2,8 +2,8 @@ from flask import current_app as app
 from flask import request
 from passlib.hash import pbkdf2_sha256
 from jose import jwt
-from waypi import tools
-from waypi import auth
+from app import tools
+from app import auth
 import json
 
 
@@ -66,7 +66,6 @@ class User:
 
     def login(self):
         resp = tools.JsonResp({"message": "Invalid user credentials"}, 403)
-        # request = LocalProxy(partial(_lookup_req_object, "request"))
         try:
             data = json.loads(request.data)
             email = data["email"].lower()

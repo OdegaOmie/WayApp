@@ -1,7 +1,7 @@
 from flask import current_app as app
 from flask import request
 from functools import wraps
-from waypi.tools import JsonResp
+from app.tools import JsonResp
 from jose import jwt
 import datetime
 

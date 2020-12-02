@@ -1,0 +1,6 @@
+Flask
+PyMongo
+pytz
+python-jose-cryptodome
+passlib
+

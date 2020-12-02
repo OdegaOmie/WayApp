@@ -1,7 +1,7 @@
 from flask import current_app as app
 from flask import request
 from jose import jwt
-from waypi import tools
+from app import tools
 import json
 
 
