@@ -58,6 +58,7 @@
             size_hint: 0.4, 0.15
 
         SmoothButton:
+            id: create_btn
             pos_hint:{"x":0.25,"y":0.3}
             size_hint: 0.45, 0.08
             font_size: (root.width**2 + root.height**2) / 16**4
@@ -69,6 +70,7 @@
                 root.manager.current = 'create'
         
         SmoothButton:
+            id: login_btn
             rectangle: self.x, self.y, self.width, self.height
             pos_hint:{"x":0.375,"y":0.1}
             size_hint: 0.2, 0.12
@@ -82,29 +84,29 @@
 
         
 
-<SmoothButton@Button>:
-    background_color:(0,0,0,0)
-    background_normal: ''
-    back_color: (.3, .5, .8, 1)
-    border_radius: [32]
-    canvas.before:
-        Color:
-            rgba: self.back_color
-        RoundedRectangle:
-            size: self.size
-            pos: self.pos
-            radius: self.border_radius
+# <SmoothButton@Button>:
+#     background_color:(0,0,0,0)
+#     background_normal: ''
+#     back_color: (.3, .5, .8, 1)
+#     border_radius: [32]
+#     canvas.before:
+#         Color:
+#             rgba: self.back_color
+#         RoundedRectangle:
+#             size: self.size
+#             pos: self.pos
+#             radius: self.border_radius
 
-<StrokeButton@Button>:
-    background_color:(0,0,0,0.5)
-    background_normal: ''
-    back_color: (1,0,1,1)
-    border_radius: 18
-    color: self.back_color
-    bold: True
-    canvas.before:
-        Color:
-            rgba: self.back_color
-        Line:
-            rounded_rectangle: (self.pos[0], self.pos[1], self.size[0], self.size[1], self.border_radius)
-            width: 1.2
+# <StrokeButton@Button>:
+#     background_color:(0,0,0,0.5)
+#     background_normal: ''
+#     back_color: (1,0,1,1)
+#     border_radius: 18
+#     color: self.back_color
+#     bold: True
+#     canvas.before:
+#         Color:
+#             rgba: self.back_color
+#         Line:
+#             rounded_rectangle: (self.pos[0], self.pos[1], self.size[0], self.size[1], self.border_radius)
+#             width: 1.2
