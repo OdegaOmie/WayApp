@@ -21,16 +21,6 @@ class User:
             "plan": "basic",
         }
 
-        # { 
-        #     "ip_addresses": ["127.0.0.1"],
-        #     "acct_active": True,
-        #     "date_created": "0/0/00",
-        #     "last_login": "00:00:00:00",
-        #     "user_name": "adminius",
-        #     "user_name": "El Admino",
-        #     "email": "admin@site.com",
-        #     "plan": "basic",
-        # }
 
     def get(self):
         token_data = jwt.decode(

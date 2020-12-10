@@ -1,0 +1,12 @@
+web:
+  build: ./api
+  ports:
+    - "8080:80"
+  volumes:  
+    - ./api/:/app
+  links:
+    - db
+db:
+  image: mongo:3.0.2
+  ports:
+    - "27017:27017" 
